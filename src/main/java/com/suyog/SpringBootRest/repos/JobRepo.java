@@ -124,8 +124,5 @@ public class JobRepo {
 	public void addJobPost(JobPost job) {
 		jobs.add(job);
 	}
-	
- 
-
 
 }
