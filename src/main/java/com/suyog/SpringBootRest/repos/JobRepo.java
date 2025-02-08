@@ -2,6 +2,7 @@ package com.suyog.SpringBootRest.repos;
 
 import java.util.ArrayList;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.suyog.SpringBootRest.models.JobPost;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class JobRepo {
 
-	// arrayList to store store JobPost objects
+	// arrayList to store JobPost objects
 	List<JobPost> jobs = new ArrayList<>();
 
 	// ****************************************************************************
@@ -19,8 +20,12 @@ public class JobRepo {
 	// constructor->injecting objects into ArrayList defined above.
 	public JobRepo() {
 
+
 		// Java Developer Job Post
-		jobs.add(new JobPost(1, "Java Developer", "Must have good experience in core Java and advanced Java", 2,
+		jobs.add(new JobPost(1,
+				"Java Developer",
+				"Must have good experience in core Java and advanced Java",
+				2,
 				List.of("Core Java", "J2EE", "Spring Boot", "Hibernate")));
 
 		// Frontend Developer Job Post
