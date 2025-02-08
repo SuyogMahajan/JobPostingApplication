@@ -66,4 +66,15 @@ public class JobPost {
     public void setPostTechStack(List<String> postTechStack) {
         this.postTechStack = postTechStack;
     }
+
+    @Override
+    public String toString() {
+        return "JobPost{" +
+                "postId=" + postId +
+                ", postProfile='" + postProfile + '\'' +
+                ", postDesc='" + postDesc + '\'' +
+                ", reqExperience=" + reqExperience +
+                ", postTechStack=" + postTechStack +
+                '}';
+    }
 }

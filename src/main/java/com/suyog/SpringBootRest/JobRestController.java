@@ -18,13 +18,21 @@ public class JobRestController {
     private JobService jobService;
 
     @GetMapping("jobPosts")
-//    @ResponseBody // this annotation makes a function return json response body in @Controller class
+    //@ResponseBody // this annotation makes a function return json response body in @Controller class
     public List<JobPost> getAllJobs() {
         return jobService.returnAllJobPosts();
     }
 
+    // in this end point @PathVariablle will search for name mentioned and add that value to variable
     @GetMapping("jobPost/{jobPostId}")
     public JobPost getJobPost(@PathVariable("jobPostId") int id){
         return jobService.getJobPost(id);
+    }
+
+    // what ever data is being sent in request will be stored in request boy which will be mapped with variable
+    @PostMapping("jobPost")
+    public JobPost addJob(@RequestBody JobPost job) {
+        jobService.addJobPost(job);
+        return job;
     }
 }
