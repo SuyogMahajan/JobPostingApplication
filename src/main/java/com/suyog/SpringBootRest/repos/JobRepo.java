@@ -130,4 +130,11 @@ public class JobRepo {
 		jobs.add(job);
 	}
 
+    public JobPost getJobPost(int id) {
+		for(JobPost p:jobs) {
+			if(p.getPostId() == id)
+				return p;
+		}
+		return null;
+    }
 }
