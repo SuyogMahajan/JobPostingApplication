@@ -1,6 +1,7 @@
 package com.suyog.SpringBootRest;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.suyog.SpringBootRest.models.JobPost;
 import com.suyog.SpringBootRest.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,15 @@ public class JobRestController {
         jobService.addJobPost(job);
         return job;
     }
+
+    @PatchMapping("jobPost")
+    public JobPost updateJob(@RequestBody JobPost jobPost) {
+        return jobService.updateJob(jobPost);
+    }
+
+    @DeleteMapping("jobPost/{jobPostId}")
+    public String deleteJob(@PathVariable("jobPostId") int id) {
+        return jobService.deleteJob(id);
+    }
+
 }

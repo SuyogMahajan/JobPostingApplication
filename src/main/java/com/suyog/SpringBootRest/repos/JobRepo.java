@@ -137,4 +137,29 @@ public class JobRepo {
 		}
 		return null;
     }
+
+	public JobPost updateJob(JobPost job) {
+		for(JobPost p:jobs) {
+			if(p.getPostId() == job.getPostId()) {
+				p.setPostDesc(job.getPostDesc());
+				p.setPostTechStack(job.getPostTechStack());
+				p.setPostProfile(job.getPostProfile());
+				p.setReqExperience(job.getReqExperience());
+
+				return p;
+			}
+		}
+		return null;
+	}
+
+	public String deleteJob(int id) {
+		for(JobPost p:jobs) {
+			if (p.getPostId() == id){
+				jobs.remove(p);
+				return "Deleted.";
+			}
+		}
+
+		return "Not Found";
+	}
 }
