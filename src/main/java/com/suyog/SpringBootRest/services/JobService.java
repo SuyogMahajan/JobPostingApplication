@@ -1,38 +1,43 @@
 package com.suyog.SpringBootRest.services;
 
-import java.util.List;
-
-import com.suyog.SpringBootRest.models.JobPost;
-import com.suyog.SpringBootRest.repos.JobRepo;
+import com.suyog.SpringBootRest.models.DTO.JobDTO;
+import com.suyog.SpringBootRest.models.DTO.JobFilterDTO;
+import com.suyog.SpringBootRest.models.Job;
+import com.suyog.SpringBootRest.repositories.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobService {
-	@Autowired
-	public JobRepo repo;
 
-	//method to return all JobPosts
-	public List<JobPost> returnAllJobPosts() {
-		return repo.returnAllJobPosts();
-	}
+    @Autowired
+    JobRepo jobRepo;
 
-	// method to add a jobPost
-	public void addJobPost(JobPost jobPost) {
-		 repo.addJobPost(jobPost);
-	}
+    public List<Job> getAllJobs() {
+        return jobRepo.findAll();
+    }
 
-	public JobPost getJobPost(int id) {
-		return repo.getJobPost(id);
-	}
+    public Job createJob(JobDTO jobDTO) {
+        Job job = jobDTO.getJob();
+        return jobRepo.save(job);
+    }
 
-	public JobPost updateJob(JobPost job) {
-		return repo.updateJob(job);
-	}
+    public Job getJobById(int id) {
+        Optional<Job> job = jobRepo.findById(id);
+        return job.get();
+    }
 
-	public String deleteJob(int id) {
-		return repo.deleteJob(id);
-	}
-	
+    public List<Job> getFilteredJobs(JobFilterDTO jobFilterDTO) {
+        return jobRepo.getFilteredJobs(jobFilterDTO.getSearchKeyword(),
+                jobFilterDTO.getLocationKeyword(),
+                jobFilterDTO.getType(),
+                jobFilterDTO.getMinSalary(),
+                jobFilterDTO.getMaxSalary(),
+                jobFilterDTO.getMinSalary(),
+                jobFilterDTO.getPostingDate()
+        );
+    }
 }
