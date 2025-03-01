@@ -22,7 +22,6 @@ public class JobController {
     @GetMapping("jobs")
     public List<Job> getAllJobs() {
         List<Job> jobs = jobService.getAllJobs();
-//        System.out.println(jobs);
         return jobs;
     }
 
@@ -33,13 +32,12 @@ public class JobController {
 
     @PostMapping("job")
     public Job createJob(@RequestBody JobDTO jobDTO) {
-       return jobService.createJob(jobDTO);
+        return jobService.createJob(jobDTO);
     }
 
     @PostMapping("job/filter")
     public List<Job> getJobByKeyword(@RequestBody JobFilterDTO jobFilterDTO) {
         List<Job> jobs = jobService.getFilteredJobs(jobFilterDTO);
-
         return jobs;
     }
 
