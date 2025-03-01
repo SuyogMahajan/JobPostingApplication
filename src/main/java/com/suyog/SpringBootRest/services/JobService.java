@@ -36,7 +36,6 @@ public class JobService {
                 jobFilterDTO.getType(),
                 jobFilterDTO.getMinSalary(),
                 jobFilterDTO.getMaxSalary(),
-                jobFilterDTO.getMinSalary(),
                 jobFilterDTO.getPostingDate()
         );
     }

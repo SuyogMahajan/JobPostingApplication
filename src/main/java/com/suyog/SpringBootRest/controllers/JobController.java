@@ -39,6 +39,7 @@ public class JobController {
     @PostMapping("job/filter")
     public List<Job> getJobByKeyword(@RequestBody JobFilterDTO jobFilterDTO) {
         List<Job> jobs = jobService.getFilteredJobs(jobFilterDTO);
+
         return jobs;
     }
 

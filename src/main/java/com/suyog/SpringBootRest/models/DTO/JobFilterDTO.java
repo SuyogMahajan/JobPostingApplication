@@ -6,7 +6,7 @@ public class JobFilterDTO {
 
     private String searchKeyword;
     private String locationKeyword;
-    private String type;
+    private String type[];
     private Double minSalary;
     private Double maxSalary;
     private Date postingDate;
@@ -27,11 +27,11 @@ public class JobFilterDTO {
         this.locationKeyword = locationKeyword;
     }
 
-    public String getType() {
+    public String[] getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String[] type) {
         this.type = type;
     }
 

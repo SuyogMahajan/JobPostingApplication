@@ -15,15 +15,13 @@ public interface JobRepo extends JpaRepository<Job, Integer> {
             "       upper(j.description) like upper(concat('%',:searchKeyword,'%'))  ) AND" +
             "(  :locationKeyword is null or " +
             "       upper(j.location) like upper(concat('%',:locationKeyword,'%'))   ) AND" +
-            "(  :type is null or j.type = :type ) AND" +
+            "(  :type is null or j.type in :type ) AND" +
             "(  :minSalary is null or j.salaryMin >= :minSalary       ) AND" +
-            "(  :maxSalary is null or j.salaryMax <= :maxSalary       ) AND" +
             "(  :postingDate is null or j.postedDate = :postingDate )")
     List<Job> getFilteredJobs(String searchKeyword,
                               String locationKeyword,
-                              String type,
+                              String type[],
                               Double minSalary,
                               Double maxSalary,
-                              Double minSalary1,
                               Date postingDate);
 }
