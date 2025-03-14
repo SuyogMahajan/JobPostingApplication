@@ -1,6 +1,7 @@
 package com.suyog.SpringBootRest.models.DTO;
 
 import com.suyog.SpringBootRest.models.Job;
+import com.suyog.SpringBootRest.models.JobType;
 
 import java.util.Date;
 
@@ -8,14 +9,14 @@ public class JobDTO {
 
     private String title;
     private String description;
-    private String type; // Full-Time, Part-Time, Internship
+    private JobType type; // Full-Time, Part-Time, Internship
     private String location;
     private Double salaryMin;
     private Double salaryMax;
     private Date postedDate;
     private Date expiryDate;
 
-    public JobDTO(String title, String description, String type, String location, Double salaryMin, Double salaryMax, Date postedDate, Date expiryDate) {
+    public JobDTO(String title, String description, JobType type, String location, Double salaryMin, Double salaryMax, Date postedDate, Date expiryDate) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -42,11 +43,11 @@ public class JobDTO {
         this.description = description;
     }
 
-    public String getType() {
+    public JobType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(JobType type) {
         this.type = type;
     }
 

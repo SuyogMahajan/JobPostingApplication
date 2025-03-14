@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.xml.stream.events.Characters;
 import java.util.*;
 
 
@@ -17,7 +18,9 @@ public class Job {
     private Long id;
     private String title;
     private String description;
-    private String type; // Full-Time, Part-Time, Internship
+
+    @Enumerated(EnumType.STRING)
+    private JobType type; // Full-Time, Part-Time, Internship
     private String location;
     private Double salaryMin;
     private Double salaryMax;
@@ -54,11 +57,11 @@ public class Job {
         this.description = description;
     }
 
-    public String getType() {
+    public JobType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(JobType type) {
         this.type = type;
     }
 

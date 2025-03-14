@@ -1,12 +1,15 @@
 package com.suyog.SpringBootRest.models.DTO;
 
+import com.suyog.SpringBootRest.models.JobType;
+
 import java.util.Date;
+import java.util.List;
 
 public class JobFilterDTO {
 
     private String searchKeyword;
     private String locationKeyword;
-    private String type[];
+    private List<JobType> type;
     private Double minSalary;
     private Double maxSalary;
     private Date postingDate;
@@ -27,11 +30,11 @@ public class JobFilterDTO {
         this.locationKeyword = locationKeyword;
     }
 
-    public String[] getType() {
+    public List<JobType> getType() {
         return type;
     }
 
-    public void setType(String[] type) {
+    public void setType(List<JobType> type) {
         this.type = type;
     }
 

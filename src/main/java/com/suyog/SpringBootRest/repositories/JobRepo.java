@@ -1,6 +1,7 @@
 package com.suyog.SpringBootRest.repositories;
 
 import com.suyog.SpringBootRest.models.Job;
+import com.suyog.SpringBootRest.models.JobType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,7 +21,7 @@ public interface JobRepo extends JpaRepository<Job, Integer> {
             "(  :postingDate is null or j.postedDate = :postingDate )")
     List<Job> getFilteredJobs(String searchKeyword,
                               String locationKeyword,
-                              String type[],
+                              List<JobType> type,
                               Double minSalary,
                               Double maxSalary,
                               Date postingDate);

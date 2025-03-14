@@ -3,7 +3,6 @@ package com.suyog.SpringBootRest.models;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -11,22 +10,21 @@ import java.util.List;
 @Scope("prototype")
 @Entity
 @Table(name="applicant",
-       uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
+       uniqueConstraints = @UniqueConstraint(columnNames = {"email","userName"}))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-
+    private String userName;
     private String email;
     private String password;
 
-    private String role; // HR or Applicant
+    @Enumerated(EnumType.STRING)
+    private Role role; // HR or Applicant
 
-    @OneToMany(mappedBy = "applicant")
+    @OneToMany(mappedBy = "applicant", fetch = FetchType.EAGER)
     private List<Application> applications;
-
 
     public Long getId() {
         return id;
@@ -36,12 +34,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -60,11 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -80,11 +78,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", applicationsLength=" + applications +
+                ", applicationsLength=" + applications.size() +
                 '}';
     }
 }
