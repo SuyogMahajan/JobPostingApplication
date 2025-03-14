@@ -42,7 +42,7 @@ public class AuthConfigurations {
     AuthenticationProvider getAuthenticationProvider() {
 
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-
+        hello
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(getBCryptPasswordEncoder());
 
