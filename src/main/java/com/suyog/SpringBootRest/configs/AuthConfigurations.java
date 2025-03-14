@@ -1,4 +1,4 @@
-package com.suyog.SpringBootRest;
+package com.suyog.SpringBootRest.configs;
 
 import com.suyog.SpringBootRest.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,34 +6,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.ArrayList;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class AuthConfigurations {
 
-// JWT Branch
+    // JWT Branch
     @Autowired
     private MyUserDetailService userDetailsService;
 
-//    @Autowired
-//    private JwtFilter filter;
+    @Autowired
+    private JwtAuthenticationFilter jwtFilter;
 
     @Bean
     BCryptPasswordEncoder getBCryptPasswordEncoder() {
@@ -47,27 +38,26 @@ public class AuthConfigurations {
 
     @Bean
     AuthenticationProvider getAuthenticationProvider() {
-
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(getBCryptPasswordEncoder());
-
         return authenticationProvider;
-
     }
 
     @Bean
     SecurityFilterChain getSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity.csrf(customizer -> customizer.disable());
-        httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers(
-                        "api/v1/sign_up",
-                                 "api/v1/sign_in").permitAll()
-                .anyRequest().authenticated());
-        httpSecurity.httpBasic(Customizer.withDefaults());
-        httpSecurity.authenticationProvider(getAuthenticationProvider());
+        httpSecurity.csrf(customizer -> customizer.disable())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(
+                                "api/v1/sign_up",
+                                "api/v1/sign_in").permitAll()
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
+                .authenticationProvider(getAuthenticationProvider())
+
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+        ;
         return httpSecurity.build();
     }
 
