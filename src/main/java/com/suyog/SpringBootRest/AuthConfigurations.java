@@ -28,21 +28,28 @@ import java.util.ArrayList;
 @EnableWebSecurity
 public class AuthConfigurations {
 
+// JWT Branch
     @Autowired
     private MyUserDetailService userDetailsService;
+
+//    @Autowired
+//    private JwtFilter filter;
 
     @Bean
     BCryptPasswordEncoder getBCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
-
+    @Bean
+    AuthenticationManager getAuthenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 
     @Bean
     AuthenticationProvider getAuthenticationProvider() {
 
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        hello
+
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(getBCryptPasswordEncoder());
 

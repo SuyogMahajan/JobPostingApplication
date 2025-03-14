@@ -1,12 +1,15 @@
 package com.suyog.SpringBootRest.services;
 
+import com.suyog.SpringBootRest.models.DTO.UserDTO;
 import com.suyog.SpringBootRest.models.User;
 import com.suyog.SpringBootRest.models.UserPricipl;
 import com.suyog.SpringBootRest.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -19,6 +22,9 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private ApplicationContext context;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,4 +39,13 @@ public class MyUserDetailService implements UserDetailsService {
             return new UserPricipl(user);
         }
     }
+
+    public User signUp(UserDTO userDTO) {
+
+        User user = userDTO.userBuilder();
+        user.setPassword(context.getBean(BCryptPasswordEncoder.class).encode(userDTO.getPassword()));
+        return userRepo.save(user);
+
+    }
+
 }
