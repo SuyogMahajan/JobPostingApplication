@@ -1,4 +1,4 @@
-package com.suyog.SpringBootRest.models;
+package com.suyog.SpringBootRest.models.authentication_models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

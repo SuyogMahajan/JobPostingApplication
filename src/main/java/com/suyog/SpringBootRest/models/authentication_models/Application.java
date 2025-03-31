@@ -1,9 +1,9 @@
-package com.suyog.SpringBootRest.models;
+package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.suyog.SpringBootRest.models.Job;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

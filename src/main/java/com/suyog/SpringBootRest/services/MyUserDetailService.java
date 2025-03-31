@@ -1,8 +1,8 @@
 package com.suyog.SpringBootRest.services;
 
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
-import com.suyog.SpringBootRest.models.User;
-import com.suyog.SpringBootRest.models.UserPricipl;
+import com.suyog.SpringBootRest.models.authentication_models.User;
+import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
 import com.suyog.SpringBootRest.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

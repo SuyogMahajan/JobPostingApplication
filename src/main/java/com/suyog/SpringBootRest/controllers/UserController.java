@@ -2,7 +2,7 @@ package com.suyog.SpringBootRest.controllers;
 
 import com.suyog.SpringBootRest.constants.AppConstants;
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
-import com.suyog.SpringBootRest.models.User;
+import com.suyog.SpringBootRest.models.authentication_models.User;
 import com.suyog.SpringBootRest.services.JwtService;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;

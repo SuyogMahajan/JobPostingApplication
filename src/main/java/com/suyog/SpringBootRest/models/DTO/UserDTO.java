@@ -1,7 +1,7 @@
 package com.suyog.SpringBootRest.models.DTO;
 
 import com.suyog.SpringBootRest.models.Role;
-import com.suyog.SpringBootRest.models.User;
+import com.suyog.SpringBootRest.models.authentication_models.User;
 
 public class UserDTO {
 

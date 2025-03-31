@@ -1,5 +1,6 @@
-package com.suyog.SpringBootRest.models;
+package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.suyog.SpringBootRest.models.Role;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
