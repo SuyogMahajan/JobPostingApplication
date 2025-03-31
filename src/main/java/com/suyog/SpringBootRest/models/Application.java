@@ -3,7 +3,6 @@ package com.suyog.SpringBootRest.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,7 @@ import java.util.Date;
 @Scope("prototype")
 @Entity
 public class Application {
-
+    // i am here
     @Id
     private Long id;
     private Date appliedDate;
