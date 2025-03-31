@@ -5,6 +5,7 @@ import com.suyog.SpringBootRest.models.User;
 
 public class UserDTO {
 
+    private String fullName;
     private String userName;
     private String email;
     private String password;
@@ -19,6 +20,14 @@ public class UserDTO {
         user.setRole(this.getRole());
 
         return user;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getUserName() {

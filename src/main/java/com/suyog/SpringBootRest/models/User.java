@@ -82,7 +82,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", applicationsLength=" + applications.size() +
+//                ", applicationsLength=" + applications.size() +
                 '}';
     }
 }

@@ -12,11 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.nio.file.attribute.UserPrincipal;
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class MyUserDetailService implements UserDetailsService {
 
@@ -25,6 +20,11 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Autowired
     private ApplicationContext context;
+
+    public boolean isUserNameAvailable(String userName) {
+        User user = userRepo.findByUserName(userName);
+        return user == null;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,11 +41,9 @@ public class MyUserDetailService implements UserDetailsService {
     }
 
     public User signUp(UserDTO userDTO) {
-
         User user = userDTO.userBuilder();
         user.setPassword(context.getBean(BCryptPasswordEncoder.class).encode(userDTO.getPassword()));
         return userRepo.save(user);
-
     }
 
 }
