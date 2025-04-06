@@ -18,6 +18,7 @@ public class UserDTO {
         user.setEmail(this.getEmail());
         user.setPassword(this.getPassword());
         user.setRole(this.getRole());
+        user.setFullName(this.getFullName());
 
         return user;
     }

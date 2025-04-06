@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.suyog.SpringBootRest.models.Role;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
@@ -16,13 +17,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
+    private String fullName;
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role; // HR or Applicant
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference
     private UserProfile userProfile;
 
     public Long getId() {
@@ -39,6 +42,22 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

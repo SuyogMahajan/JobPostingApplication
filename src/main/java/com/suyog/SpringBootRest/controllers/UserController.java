@@ -3,8 +3,10 @@ package com.suyog.SpringBootRest.controllers;
 import com.suyog.SpringBootRest.constants.AppConstants;
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
 import com.suyog.SpringBootRest.models.authentication_models.User;
+import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
 import com.suyog.SpringBootRest.services.JwtService;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
+import com.suyog.SpringBootRest.services.user_profile_services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private UserProfileService userProfileService;
 
     @GetMapping("is_username_available")
     public ResponseEntity<Boolean> isUserNameAvailable(@RequestParam String userName) {
@@ -65,6 +70,8 @@ public class UserController {
 
         try {
             User user = userDetailService.signUp(userDTO);
+            UserProfile userProfile = userProfileService.addNewUserProfile(user);
+
             if(user == null) {
                 throw new NullPointerException("Not able to create user");
             }

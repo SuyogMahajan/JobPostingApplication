@@ -19,6 +19,9 @@ public class UserService {
 
         User user = userDTO.userBuilder();
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
+
+
         return userRepo.save(user);
 
     }

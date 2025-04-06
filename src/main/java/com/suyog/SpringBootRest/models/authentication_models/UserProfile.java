@@ -1,30 +1,38 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @Entity
 public class UserProfile {
 
+    @MapsId
+    @JsonBackReference
     @OneToOne(mappedBy = "userProfile")
     private User user;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String userName;
     private String fullName;
     private String title;
     private Integer experience;
     private String education;
     private String profilePicture;
     private String personalWebsite;
+    private String nationality;
+    private Date DOB;
+    private String gender;
+    private String maritalStatus;
+    private String bio;
 
     @OneToMany(mappedBy = "userProfile")
     private List<Application> applications;
-
 
     @OneToMany(mappedBy = "userProfile")
     private List<SocialLink> socialLinks;
@@ -53,6 +61,14 @@ public class UserProfile {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFullName() {
@@ -141,6 +157,46 @@ public class UserProfile {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public Date getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(Date DOB) {
+        this.DOB = DOB;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     @Override
