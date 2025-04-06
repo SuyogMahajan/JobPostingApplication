@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @Scope("prototype")
 @Entity
@@ -24,8 +22,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role; // HR or Applicant
 
-    @OneToMany(mappedBy = "applicant", fetch = FetchType.EAGER)
-    private List<Application> applications;
+    @OneToOne
+    private UserProfile userProfile;
 
     public Long getId() {
         return id;
@@ -67,13 +65,6 @@ public class User {
         this.role = role;
     }
 
-    public List<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<Application> applications) {
-        this.applications = applications;
-    }
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@ import com.suyog.SpringBootRest.models.Job;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +18,16 @@ public class Application {
     @Id
     private Long id;
     private Date appliedDate;
-    private String status; // Pending, Accepted, Rejected
+    private String status;
+
+    @OneToOne
+    private UserProfile userProfile;
+
+    @OneToOne// Pending, Accepted, Rejected
+    private Resume resume;
 
     @ManyToOne
     private Job job;
-
-    @ManyToOne
-    private User applicant;
 
     public Long getId() {
         return id;
@@ -57,13 +61,6 @@ public class Application {
         this.job = job;
     }
 
-    public User getApplicant() {
-        return applicant;
-    }
-
-    public void setApplicant(User applicant) {
-        this.applicant = applicant;
-    }
 
     @Override
     public String toString() {
@@ -72,7 +69,7 @@ public class Application {
                 ", appliedDate=" + appliedDate +
                 ", status='" + status + '\'' +
                 ", job=" + job +
-                ", applicant=" + applicant.getId() +
+                ", userProfile=" + userProfile.getId() +
                 '}';
     }
 }
