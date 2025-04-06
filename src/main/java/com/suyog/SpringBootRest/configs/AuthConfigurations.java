@@ -71,7 +71,8 @@ public class AuthConfigurations {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
                                 "api/v1/sign_up",
-                                "api/v1/sign_in","api/v1/is_username_available","/api/v1/jobs" ).permitAll()
+                                "api/v1/sign_in","api/v1/is_username_available","/api/v1/jobs" ,
+                                "/api/v1/file/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(customizer -> customizer.disable())
