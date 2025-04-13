@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,10 +13,9 @@ public class SocialLink {
     private String type; // e.g., Twitter, LinkedIn
     private String url;
 
-
-    @OneToOne
+    @JsonBackReference
+    @ManyToOne
     private UserProfile userProfile;
-
 
     public Long getId() {
         return id;

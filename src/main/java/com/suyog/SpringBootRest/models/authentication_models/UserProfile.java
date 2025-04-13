@@ -127,6 +127,10 @@ public class UserProfile {
         this.socialLinks = socialLinks;
     }
 
+    public void addSocialLink(SocialLink socialLink) {
+        socialLinks.add(socialLink);
+    }
+
     public List<Resume> getResumes() {
         return resumes;
     }

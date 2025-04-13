@@ -20,10 +20,10 @@ public class UserProfileService {
 
     @Autowired
     MyUserDetailService userDetailService;
-    // add new user profile
 
+    // add new user profile
     public User getCurrentUser() {
-         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
         UserPricipl userPricipl = (UserPricipl) userDetailService.loadUserByUsername(userName);
         return userPricipl.getUser();
@@ -36,6 +36,7 @@ public class UserProfileService {
         userProfile.setUserName(user.getUserName());
         userProfile.setFullName(user.getFullName());
         user.setUserProfile(userProfile);
+
 
         return userProfileRepo.save(userProfile);
     }

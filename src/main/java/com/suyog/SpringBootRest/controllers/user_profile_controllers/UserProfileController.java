@@ -28,6 +28,7 @@ public class UserProfileController {
             UserProfile userProfile = userProfileService.updateUserProfile(userId, userProfileDTO);
             response.put("message","update successful.");
             response.put("data", userProfile);
+
         }catch(Exception e) {
             response.put("message","Not able to update the profile.");
             response.put("error",e.getMessage());
