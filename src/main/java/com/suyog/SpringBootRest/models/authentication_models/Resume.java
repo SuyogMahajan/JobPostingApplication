@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Resume {
     private Double fileSize;
     private String filePath;
 
+    @JsonBackReference
     @OneToOne
     private UserProfile userProfile;
 

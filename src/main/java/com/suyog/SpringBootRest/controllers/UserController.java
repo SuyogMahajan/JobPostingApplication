@@ -3,6 +3,7 @@ package com.suyog.SpringBootRest.controllers;
 import com.suyog.SpringBootRest.constants.AppConstants;
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
 import com.suyog.SpringBootRest.models.authentication_models.User;
+import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
 import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
 import com.suyog.SpringBootRest.services.JwtService;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
@@ -53,10 +54,12 @@ public class UserController {
                     );
 
             Map<String , Object> data = new HashMap<>();
+            UserPricipl userPricipl = (UserPricipl) userDetailService.loadUserByUsername(userDTO.getUserName());
 
             if(authentication.isAuthenticated()) {
                 data.put("message", "Log In Successful");
                 data.put("authToken", jwtService.getToken(userDTO.getUserName()));
+                data.put("user", userPricipl.getUser());
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(data);
         } catch (Exception e) {

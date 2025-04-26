@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.suyog.SpringBootRest.models.Job;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ public class Application {
     private Date appliedDate;
     private String status;
 
+    @JsonBackReference
     @OneToOne
     private UserProfile userProfile;
 

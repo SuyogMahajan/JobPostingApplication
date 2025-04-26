@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class NotificationSettings {
     private Boolean notifyProfileSaved;
 
 
+    @JsonBackReference
     @OneToOne
     private UserProfile userProfile;
 

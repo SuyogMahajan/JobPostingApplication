@@ -1,8 +1,10 @@
 package com.suyog.SpringBootRest.models.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class UserProfileDTO {
 
@@ -11,14 +13,24 @@ public class UserProfileDTO {
     private String title;
     private Integer experience;
     private String education;
-    private String profilePicture;
+    private String profilePic;
     private String personalWebsite;
     private String nationality;
-    private Date   DOB;
+
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate DOB;
     private String gender;
     private String maritalStatus;
     private String bio;
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
 
     public String getFullName() {
         return fullName;
@@ -60,14 +72,6 @@ public class UserProfileDTO {
         this.education = education;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
     public String getPersonalWebsite() {
         return personalWebsite;
     }
@@ -84,11 +88,11 @@ public class UserProfileDTO {
         this.nationality = nationality;
     }
 
-    public Date getDOB() {
+    public LocalDate getDOB() {
         return DOB;
     }
 
-    public void setDOB(Date DOB) {
+    public void setDOB(LocalDate DOB) {
         this.DOB = DOB;
     }
 
@@ -124,11 +128,10 @@ public class UserProfileDTO {
         userProfile.setUserName(this.userName);
         userProfile.setExperience(this.experience);
         userProfile.setEducation(this.education);
-        userProfile.setProfilePicture(this.profilePicture);
         userProfile.setPersonalWebsite(this.personalWebsite);
 
         userProfile.setNationality(this.nationality);
-        userProfile.setDOB(this.DOB);
+        userProfile.setDOB(Date.valueOf(this.DOB));
         userProfile.setGender(this.gender);
         userProfile.setMaritalStatus(this.maritalStatus);
         userProfile.setBio(this.bio);
@@ -139,13 +142,19 @@ public class UserProfileDTO {
     @Override
     public String toString() {
         return "UserProfileDTO{" +
-                "fullName='" + fullName + '\'' +
+                "userName='" + userName + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", title='" + title + '\'' +
                 ", experience=" + experience +
                 ", education='" + education + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
                 ", personalWebsite='" + personalWebsite + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", DOB=" + DOB +
+                ", gender='" + gender + '\'' +
+                ", maritalStatus='" + maritalStatus + '\'' +
+                ", bio='" + bio + '\'' +
                 '}';
     }
 }
+
 

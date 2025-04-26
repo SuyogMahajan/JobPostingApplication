@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.models.authentication_models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class ContactInfo {
     private String email;
     private String mapLocation;
 
+    @JsonBackReference
     @OneToOne
     private UserProfile userProfile;
 

@@ -40,7 +40,7 @@ public class AuthConfigurations {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Allow React frontend
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST","PATCH", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true); // Important for cookies/session
 
@@ -71,8 +71,9 @@ public class AuthConfigurations {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
                                 "api/v1/sign_up",
-                                "api/v1/sign_in","api/v1/is_username_available","/api/v1/jobs" ,
-                                "/api/v1/file/**").permitAll()
+                                "api/v1/sign_in",
+                                "api/v1/is_username_available","/api/v1/jobs" ,
+                                "/api/v1/file/download/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(customizer -> customizer.disable())

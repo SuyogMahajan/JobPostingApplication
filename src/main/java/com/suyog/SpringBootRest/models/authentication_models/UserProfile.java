@@ -2,13 +2,14 @@ package com.suyog.SpringBootRest.models.authentication_models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class UserProfile {
+public class UserProfile  {
 
     @MapsId
     @JsonBackReference
@@ -31,19 +32,27 @@ public class UserProfile {
     private String maritalStatus;
     private String bio;
 
-    @OneToMany(mappedBy = "userProfile")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userProfile",fetch = FetchType.EAGER)
     private List<Application> applications;
 
-    @OneToMany(mappedBy = "userProfile")
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userProfile",fetch = FetchType.EAGER)
     private List<SocialLink> socialLinks;
 
-    @OneToMany(mappedBy = "userProfile")
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userProfile",fetch = FetchType.EAGER)
     private List<Resume> resumes;
 
-    @OneToOne(mappedBy = "userProfile")
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "userProfile",fetch = FetchType.EAGER)
     private ContactInfo contactInfo;
 
-    @OneToOne(mappedBy = "userProfile")
+    @JsonManagedReference
+    @OneToOne(mappedBy = "userProfile",fetch = FetchType.EAGER)
     private NotificationSettings notificationSettings;
 
 
