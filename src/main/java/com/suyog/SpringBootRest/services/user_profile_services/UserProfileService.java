@@ -1,5 +1,6 @@
 package com.suyog.SpringBootRest.services.user_profile_services;
 
+import com.suyog.SpringBootRest.exceptions.UnautherizedUserException;
 import com.suyog.SpringBootRest.models.DTO.UserProfileDTO;
 import com.suyog.SpringBootRest.models.authentication_models.User;
 import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
@@ -7,6 +8,7 @@ import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
 import com.suyog.SpringBootRest.repositories.user_profile_repos.UserProfileRepo;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
 import org.apache.coyote.BadRequestException;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -66,5 +68,15 @@ public class UserProfileService {
 
         return userProfileRepo.save(userProfile);
     }
+    public UserProfile getUserProfile(int userId) throws UnautherizedUserException {
 
+        User user = this.getCurrentUser();
+        if(user.getId() != userId) {
+            throw new UnautherizedUserException();
+        }
+
+        UserProfile userProfile = (UserProfile) user.getProfile();
+        Hibernate.initialize(userProfile);
+        return userProfile;
+    }
 }

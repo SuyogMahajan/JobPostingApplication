@@ -33,13 +33,13 @@ public class FileController {
         return ResponseEntity.ok(fileService.uploadProfilePic(userId, file, "profile_pics"));
     }
 
-    @PostMapping("/upload/resume/{userId}")
-    public ResponseEntity<?> uploadResume(@PathVariable int userId, @RequestParam("file") MultipartFile file) {
-
-        fileService.uploadResume(userId,file,"resumes");
-
-
-    }
+//    @PostMapping("/upload/resume/{userId}")
+//    public ResponseEntity<?> uploadResume(@PathVariable int userId, @RequestParam("file") MultipartFile file) {
+//
+//        fileService.uploadResume(userId,file,"resumes");
+//
+//
+//    }
 
     @GetMapping("/download/{type}/{path:.+}")
     public ResponseEntity downloadFile(@PathVariable String type, @PathVariable(value = "path") String fileName) throws FileNotFoundException {
