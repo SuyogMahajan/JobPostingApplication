@@ -73,7 +73,7 @@ public class UserController {
 
         try {
             User user = userDetailService.signUp(userDTO);
-            UserProfile userProfile = userProfileService.addNewUserProfile(user);
+            UserProfile userProfile = userProfileService.addNewProfile(user);
 
             if(user == null) {
                 throw new NullPointerException("Not able to create user");

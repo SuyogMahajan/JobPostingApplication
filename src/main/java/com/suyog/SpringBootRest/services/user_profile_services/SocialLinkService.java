@@ -2,10 +2,10 @@ package com.suyog.SpringBootRest.services.user_profile_services;
 
 import com.suyog.SpringBootRest.exceptions.ResourceNotFoundException;
 import com.suyog.SpringBootRest.exceptions.UnautherizedUserException;
+import com.suyog.SpringBootRest.models.authentication_models.AbstractProfile;
 import com.suyog.SpringBootRest.models.authentication_models.SocialLink;
 import com.suyog.SpringBootRest.models.authentication_models.User;
 import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
-import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
 import com.suyog.SpringBootRest.repositories.user_profile_repos.SocialLinkRepo;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,9 @@ public class SocialLinkService {
             throw new UnautherizedUserException();
         }
 
-        UserProfile userProfile = user.getUserProfile();
-        socialLink.setUserProfile(userProfile);
+        AbstractProfile profile = userDetailService.getUserProfile(user);
+
+        socialLink.setProfile(profile);
 
         return socialLinkRepo.save(socialLink);
     }
@@ -65,6 +66,6 @@ public class SocialLinkService {
             throw new UnautherizedUserException();
         }
 
-        return socialLinkRepo.findByUserProfile(user.getUserProfile());
+        return socialLinkRepo.findByProfile(user.getProfile());
     }
 }

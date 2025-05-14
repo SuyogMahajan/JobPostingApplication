@@ -1,8 +1,7 @@
 package com.suyog.SpringBootRest.services;
 
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
-import com.suyog.SpringBootRest.models.authentication_models.User;
-import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
+import com.suyog.SpringBootRest.models.authentication_models.*;
 import com.suyog.SpringBootRest.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -24,6 +23,21 @@ public class MyUserDetailService implements UserDetailsService {
     public boolean isUserNameAvailable(String userName) {
         User user = userRepo.findByUserName(userName);
         return user == null;
+    }
+
+    public AbstractProfile getUserProfile(User user) {
+        AbstractProfile profile;
+
+        switch (user.getRole()) {
+            case HR:
+                profile = (HRProfile) user.getProfile();
+                break;
+            default: APPLICANT:
+                profile = (UserProfile) user.getProfile();
+                break;
+        }
+
+        return profile;
     }
 
     @Override

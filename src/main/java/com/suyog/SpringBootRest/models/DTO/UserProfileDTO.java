@@ -24,7 +24,7 @@ public class UserProfileDTO {
     private String maritalStatus;
     private String bio;
 
-    public String getProfilePic() {
+    public String getProfilePicture() {
         return profilePic;
     }
 

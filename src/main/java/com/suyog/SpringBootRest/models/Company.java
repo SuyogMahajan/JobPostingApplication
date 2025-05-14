@@ -1,7 +1,6 @@
 package com.suyog.SpringBootRest.models;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +19,8 @@ public class Company {
     private String location;
     private String logo_file_name;
 
-//    @OneToMany(mappedBy = "company")
-//    private List<Job> jobs;
+    @OneToMany(mappedBy = "company")
+    private List<Job> jobs;
 
     public Long getId() {
         return id;
@@ -55,13 +54,13 @@ public class Company {
         this.logo_file_name = logo_file_name;
     }
 
-//    public List<Job> getJobs() {
-//        return jobs;
-//    }
-//
-//    public void setJobs(List<Job> jobs) {
-//        this.jobs = jobs;
-//    }
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
 
     @Override
     public String toString() {
