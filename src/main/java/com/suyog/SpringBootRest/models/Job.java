@@ -1,11 +1,11 @@
 package com.suyog.SpringBootRest.models;
 
+import com.suyog.SpringBootRest.models.authentication_models.HRProfile;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.xml.stream.events.Characters;
-import java.util.*;
+import java.util.Date;
 
 
 @Component
@@ -27,9 +27,30 @@ public class Job {
     private Date postedDate;
     private Date expiryDate;
 //
-//    @ManyToOne
-//    private Company company;
-//
+    @ManyToOne
+    private Company company;
+
+    @ManyToOne
+    private HRProfile jobPoster;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public HRProfile getJobPoster() {
+        return jobPoster;
+    }
+
+    public void setJobPoster(HRProfile jobPoster) {
+        this.jobPoster = jobPoster;
+    }
+
+
+    //
 //    @OneToMany(mappedBy = "job")
 //    private List<Application> applications;
 

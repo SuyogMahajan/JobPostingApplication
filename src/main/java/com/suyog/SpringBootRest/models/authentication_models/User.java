@@ -26,7 +26,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonManagedReference
-    private UserProfile userProfile;
+    private AbstractProfile profile;
 
     public Long getId() {
         return id;
@@ -44,12 +44,12 @@ public class User {
         this.userName = userName;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public AbstractProfile getProfile() {
+        return profile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setProfile(AbstractProfile profile) {
+        this.profile = profile;
     }
 
     public String getFullName() {

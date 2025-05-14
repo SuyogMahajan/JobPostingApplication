@@ -29,13 +29,13 @@ public class UserProfileService {
         return userPricipl.getUser();
     }
 
-    public UserProfile addNewUserProfile(User user) {
+    public UserProfile addNewProfile(User user) {
         UserProfile userProfile = new UserProfile();
 
         userProfile.setUser(user);
         userProfile.setUserName(user.getUserName());
         userProfile.setFullName(user.getFullName());
-        user.setUserProfile(userProfile);
+        user.setProfile(userProfile);
 
 
         return userProfileRepo.save(userProfile);
@@ -49,7 +49,7 @@ public class UserProfileService {
             throw new BadRequestException("user not authorized");
         }
 
-        UserProfile userProfile = user.getUserProfile();
+        UserProfile userProfile = (UserProfile) user.getProfile();
 
         userProfile.setFullName(userProfileDTO.getFullName());
         userProfile.setGender(userProfileDTO.getGender());

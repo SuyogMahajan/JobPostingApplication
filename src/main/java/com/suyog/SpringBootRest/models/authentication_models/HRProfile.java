@@ -33,8 +33,6 @@ public class HRProfile extends AbstractProfile{
 //    @JsonManagedReference
 //    @OneToOne(mappedBy = "userProfile",fetch = FetchType.EAGER)
 //    private NotificationSettings notificationSettings;
-//
-
 
     public User getUser() {
         return user;

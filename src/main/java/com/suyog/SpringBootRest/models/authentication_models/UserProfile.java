@@ -8,15 +8,12 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class UserProfile {
+public class UserProfile extends AbstractProfile{
 
     @MapsId
     @JsonBackReference
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne(mappedBy = "profile")
     private User user;
-
-    @Id
-    private Long id;
 
     private String userName;
     private String fullName;
@@ -35,13 +32,7 @@ public class UserProfile {
     private List<Application> applications;
 
     @OneToMany(mappedBy = "userProfile")
-    private List<SocialLink> socialLinks;
-
-    @OneToMany(mappedBy = "userProfile")
     private List<Resume> resumes;
-
-    @OneToOne(mappedBy = "userProfile")
-    private ContactInfo contactInfo;
 
     @OneToOne(mappedBy = "userProfile")
     private NotificationSettings notificationSettings;
@@ -53,14 +44,6 @@ public class UserProfile {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUserName() {
@@ -119,17 +102,7 @@ public class UserProfile {
         this.personalWebsite = personalWebsite;
     }
 
-    public List<SocialLink> getSocialLinks() {
-        return socialLinks;
-    }
 
-    public void setSocialLinks(List<SocialLink> socialLinks) {
-        this.socialLinks = socialLinks;
-    }
-
-    public void addSocialLink(SocialLink socialLink) {
-        socialLinks.add(socialLink);
-    }
 
     public List<Resume> getResumes() {
         return resumes;
@@ -137,14 +110,6 @@ public class UserProfile {
 
     public void setResumes(List<Resume> resumes) {
         this.resumes = resumes;
-    }
-
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
     }
 
     public NotificationSettings getNotificationSettings() {
@@ -207,7 +172,6 @@ public class UserProfile {
     public String toString() {
         return "UserProfile{" +
                 "user=" + user +
-                ", id=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", title='" + title + '\'' +
                 ", experience=" + experience +

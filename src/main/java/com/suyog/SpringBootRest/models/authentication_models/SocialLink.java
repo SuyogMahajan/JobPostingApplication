@@ -15,7 +15,7 @@ public class SocialLink {
 
     @JsonBackReference
     @ManyToOne
-    private UserProfile userProfile;
+    private AbstractProfile profile;
 
     public Long getId() {
         return id;
@@ -41,12 +41,12 @@ public class SocialLink {
         this.url = url;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public AbstractProfile getProfile() {
+        return profile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setProfile(AbstractProfile profile) {
+        this.profile = profile;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SocialLink {
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", url='" + url + '\'' +
-                ", userProfile=" + userProfile.getId() +
+                ", userProfile=" + profile.getId() +
                 '}';
     }
 }

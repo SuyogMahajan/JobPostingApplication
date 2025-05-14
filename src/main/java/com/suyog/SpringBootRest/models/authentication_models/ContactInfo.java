@@ -14,7 +14,7 @@ public class ContactInfo {
     private String mapLocation;
 
     @OneToOne
-    private UserProfile userProfile;
+    private AbstractProfile profile;
 
     public Long getId() {
         return id;
@@ -48,12 +48,12 @@ public class ContactInfo {
         this.mapLocation = mapLocation;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public AbstractProfile getProfile() {
+        return profile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setProfile(AbstractProfile userProfile) {
+        this.profile = profile;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ContactInfo {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", mapLocation='" + mapLocation + '\'' +
-                ", userProfile=" + userProfile.getId() +
+                ", userProfile=" + profile.getId() +
                 '}';
     }
 }
