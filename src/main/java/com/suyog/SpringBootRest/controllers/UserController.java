@@ -2,11 +2,11 @@ package com.suyog.SpringBootRest.controllers;
 
 import com.suyog.SpringBootRest.constants.AppConstants;
 import com.suyog.SpringBootRest.models.DTO.UserDTO;
-import com.suyog.SpringBootRest.models.authentication_models.User;
-import com.suyog.SpringBootRest.models.authentication_models.UserPricipl;
-import com.suyog.SpringBootRest.models.authentication_models.UserProfile;
+import com.suyog.SpringBootRest.models.Role;
+import com.suyog.SpringBootRest.models.authentication_models.*;
 import com.suyog.SpringBootRest.services.JwtService;
 import com.suyog.SpringBootRest.services.MyUserDetailService;
+import com.suyog.SpringBootRest.services.user_profile_services.HRProfileService;
 import com.suyog.SpringBootRest.services.user_profile_services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +36,9 @@ public class UserController {
 
     @Autowired
     private UserProfileService userProfileService;
+
+    @Autowired
+    private HRProfileService hrProfileService;
 
     @GetMapping("is_username_available")
     public ResponseEntity<Boolean> isUserNameAvailable(@RequestParam String userName) {
@@ -73,7 +76,13 @@ public class UserController {
 
         try {
             User user = userDetailService.signUp(userDTO);
-            UserProfile userProfile = userProfileService.addNewProfile(user);
+            AbstractProfile abstractProfile;
+
+            if(user.getRole() == Role.APPLICANT) {
+                 abstractProfile = userProfileService.addNewProfile(user);
+            }else{
+                abstractProfile = hrProfileService.addNewProfile(user);
+            }
 
             if(user == null) {
                 throw new NullPointerException("Not able to create user");
