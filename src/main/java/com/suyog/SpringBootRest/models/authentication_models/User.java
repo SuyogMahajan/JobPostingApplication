@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Entity
-@Table(name="applicant",
+@Table(name="app_user",
        uniqueConstraints = @UniqueConstraint(columnNames = {"email","userName"}))
 public class User {
 
